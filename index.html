@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慈濟大學 國際數位媒體科技學士學位學程 | DMT</title>
+    
+    <!-- Google Fonts 導入 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Orbitron:wght@600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Internal CSS -->
+    <style>
+        /* 科技感色系變數：深藍、明黃、純白 */
+        :root {
+            --navy-dark: #0a192f;
+            --navy-main: #0f2b5c;
+            --navy-light: #1e40af;
+            --yellow-accent: #ffc107;
+            --yellow-glow: #ffca28;
+            --yellow-hover: #e6a100;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --card-border: #e2e8f0;
+            --shadow-tech: 0 10px 30px rgba(15, 43, 92, 0.08);
+            --shadow-hover: 0 15px 35px rgba(255, 193, 7, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 導覽列 Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--bg-light);
+            box-shadow: 0 4px 20px rgba(10, 25, 47, 0.05);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--navy-main);
+        }
+
+        .logo-tech {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--navy-light);
+            letter-spacing: 1px;
+        }
+
+        .logo-tech span {
+            color: #d97706;
+            background: var(--yellow-accent);
+            color: var(--navy-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 4px;
+        }
+
+        .logo img {
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--navy-main);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--navy-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--yellow-accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy-main);
+        }
+
+        /* 主視覺區 Hero Section (深藍背景 + 黃色點綴 + 科技網格) */
+        .hero {
+            padding: 150px 0 90px;
+            background: radial-gradient(circle at 80% 20%, #1e3a8a 0%, #0a192f 100%);
+            color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 科技幾何圖案與網格裝飾 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 10%;
+            right: 5%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 193, 7, 0.15);
+            color: var(--yellow-glow);
+            border: 1px solid rgba(255, 193, 7, 0.4);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.7rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-text h1 .highlight-yellow {
+            color: var(--yellow-accent);
+            display: inline-block;
+        }
+
+        .hero-text h2 {
+            font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #93c5fd;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 32px;
+            max-width: 540px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-yellow {
+            background-color: var(--yellow-accent);
+            color: var(--navy-dark);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-yellow:hover {
+            background-color: var(--yellow-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-outline-white {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--bg-white);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--yellow-accent);
+            color: var(--yellow-accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* 替換照片展示外框 (IMG_4391.jpg) */
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--yellow-accent);
+            border-radius: 16px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 2;
+            background: var(--navy-dark);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            transition: var(--transition);
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* 區塊通用 Header */
+        section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-header .tag {
+            color: var(--navy-light);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(15, 43, 92, 0.06);
+            padding: 4px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--navy-dark);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* 1. 關於我們 About Section */
+        .about {
+            background-color: var(--bg-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--navy-main);
+            margin-bottom: 18px;
+            line-height: 1.35;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .about-tech-box {
+            background: var(--bg-light);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            border-left: 6px solid var(--yellow-accent);
+            box-shadow: var(--shadow-tech);
+            position: relative;
+        }
+
+        .about-tech-box h4 {
+            font-size: 1.3rem;
+            color: var(--navy-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-tech-box h4 i {
+            color: var(--navy-light);
+        }
+
+        /* 2. 核心能力 Competencies (白色背景 + 深藍/黃色邊框與圖示) */
+        .competencies {
+            background-color: var(--bg-light);
+            position: relative;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--bg-white);
+            padding: 36px 28px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-tech);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--navy-main);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+
+        .card:hover::before {
+            background: var(--yellow-accent);
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+            background: var(--navy-dark);
+            color: var(--yellow-accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 22px;
+            box-shadow: 0 6px 15px rgba(10, 25, 47, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: var(--navy-dark);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .card .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--navy-light);
+            margin-bottom: 14px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* 3. 學習內容 Fields */
+        .fields {
+            background-color: var(--bg-white);
+        }
+
+        .fields-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .tag-item {
+            background-color: var(--bg-light);
+            border: 1px solid var(--card-border);
+            padding: 14px 26px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: var(--navy-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .tag-item i {
+            color: var(--navy-light);
+            font-size: 1.1rem;
+        }
+
+        .tag-item:hover {
+            background-color: var(--navy-main);
+            color: var(--yellow-accent);
+            border-color: var(--navy-main);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(15, 43, 92, 0.15);
+        }
+
+        .tag-item:hover i {
+            color: var(--yellow-accent);
+        }
+
+        /* 4. 未來發展 Careers */
+        .careers {
+            background-color: var(--bg-light);
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .career-card {
+            background: var(--bg-white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            text-align: center;
+            font-weight: 700;
+            color: var(--navy-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .career-card i {
+            font-size: 2rem;
+            color: var(--navy-light);
+        }
+
+        .career-card:hover {
+            border-color: var(--yellow-accent);
+            background: var(--navy-dark);
+            color: var(--bg-white);
+            transform: translateY(-5px);
+        }
+
+        .career-card:hover i {
+            color: var(--yellow-accent);
+        }
+
+        /* 5. 學生作品 Student Work */
+       /* ===== 學生作品一格一格 Grid 樣式 ===== */
+.student-work {
+    background-color: var(--bg-white);
+    padding: 90px 0;
+}
+
+/* 網格佈局：自動依畫面寬度排列，最少每格 300px */
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* 單一學生卡片 (一格) */
+.student-card {
+    background: linear-gradient(145deg, #0a192f 0%, #0f2b5c 100%);
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    border-left: 5px solid var(--yellow-accent);
+    box-shadow: 0 10px 25px rgba(10, 25, 47, 0.12);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 懸浮效果：向上浮起、亮黃色外框發光 */
+.student-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255, 193, 7, 0.25);
+    border-color: #ffca28;
+}
+
+.student-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* 卡片頭部：頭像與姓名 */
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.student-avatar {
+    width: 55px;
+    height: 55px;
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--yellow-accent);
+    flex-shrink: 0;
+}
+
+.student-details h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin-bottom: 4px;
+}
+
+.student-details .country {
+    font-size: 0.85rem;
+    color: #93c5fd;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 卡片內容：簡介語 */
+.card-body {
+    margin-bottom: 22px;
+}
+
+.card-body .quote {
+    color: #cbd5e1;
+    font-style: italic;
+    font-size: 0.98rem;
+    line-height: 1.5;
+}
+
+/* 卡片底部：創作者專區按鈕 */
+.card-footer {
+    margin-top: auto;
+}
+
+.btn-portfolio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--yellow-accent);
+    color: #0a192f;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-portfolio:hover {
+    background-color: #ffca28;
+    color: #000000;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+}
+
+.btn-portfolio i {
+    transition: transform 0.3s ease;
+}
+
+.btn-portfolio:hover i {
+    transform: translateX(5px);
+}
+        /* 頁尾 Footer (深藍底 + 純白文字 + 明黃細節) */
+        footer {
+            background-color: var(--navy-dark);
+            color: var(--bg-white);
+            padding: 70px 0 25px;
+            border-top: 4px solid var(--yellow-accent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-info h3 {
+            font-size: 1.35rem;
+            margin-bottom: 16px;
+            color: var(--yellow-accent);
+        }
+
+        .footer-info p {
+            color: #94a3b8;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+            color: var(--bg-white);
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--yellow-accent);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #94a3b8;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--yellow-accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+            font-size: 0.88rem;
+        }
+
+        /* 響應式切換 RWD */
+        @media (max-width: 992px) {
+            .hero-content, .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+            .hero-image-wrapper {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 75%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-white);
+                flex-direction: column;
+                padding: 40px;
+                box-shadow: -10px 0 25px rgba(0,0,0,0.1);
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .work-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 Navbar -->
+    <header>
+        <div class="container navbar">
+            <a href="https://www.tcu.edu.tw/" target="_blank" class="logo">
+                <img src="photo/tculogo.png" alt="慈濟大學 Logo" onerror="this.style.display='none'">
+                <div class="logo-tech">TCU <span>DMT</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">學程簡介</a></li>
+                <li><a href="#competencies">核心能力</a></li>
+                <li><a href="#fields">學習內容</a></li>
+                <li><a href="#careers">未來發展</a></li>
+                <li><a href="#student-work">學生作品</a></li>
+                <li><a href="https://bpdmt.tcu.edu.tw/" target="_blank">官方網站</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主視覺 Banner Section (深藍底、明黃點綴、科技質感) -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge"><i class="fas fa-globe"></i> 全英語授課國際學程</span>
+                <h1>慈濟大學<br><span class="highlight-yellow">數位媒體與科技學程</span></h1>
+                <h2>Bachelor Program in Digital Media and Technology (DMT)</h2>
+                <p>結合人文關懷、數位行銷與尖端科技。我們的同學來自全球 13 個國家，聚集在一起快樂學習與跨域創新！</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn btn-yellow"><i class="fas fa-rocket"></i> 探索學程</a>
+                    <a href="https://bpdmt.tcu.edu.tw/?page_id=206" target="_blank" class="btn btn-outline-white"><i class="fas fa-external-link-alt"></i> 英文原版網頁</a>
+                </div>
+            </div>
+            <!-- 指定的照片替換處：IMG_4391.jpg -->
+            <div class="hero-image-wrapper">
+                <div class="hero-image">
+                    <img src="photo/dmtphoto.jpg" alt="慈濟大學數位媒體與科技學程合照">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. 學程簡介 About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">About Program</span>
+                <h2>學程簡介 About DMT</h2>
+                <p>慈濟大學是一個充滿愛與科技的地方</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>培養具備傳播、合作與引導體驗的媒體科技人才</h3>
+                    <p>
+                        本學程（DMT）提供涵蓋教學、創意製作、學術研究與社會回饋的全方位學習體驗。學生透過不斷的迭代與實作，深入思考並應用數位媒體與科技。
+                    </p>
+                    <p>
+                        課程特別著重實務性訓練，配合大量業界專業教師及大愛電視台引進之媒體與科技設施，滿足新興且持續擴展的數位媒體與元宇宙市場需求。
+                    </p>
+                </div>
+                <div class="about-tech-box">
+                    <h4><i class="fas fa-users"></i> 國際化多元學習環境</h4>
+                    <p>我們的同學來自<strong>台灣、馬來西亞、越南、印度尼西亞、泰國、捷克、莫三比克、吉爾吉斯、烏克蘭</strong>等超過 13 個國家。在這裡，你將擁有極佳的國際視野與多元文化交流體驗！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 四大核心能力 Core Competencies -->
+    <section id="competencies" class="competencies">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Core Values</span>
+                <h2>四大核心能力 Four Competencies</h2>
+                <p>建構、管理與領導數位媒體體驗的全方位技能集</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>設計思考</h3>
+                    <span class="subtitle">DESIGN THINKING</span>
+                    <p>以創新設計與策略性思考，培養設計所需的自信心與解決問題的能力。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tools"></i></div>
+                    <h3>基礎訓練</h3>
+                    <span class="subtitle">BASIC SKILLS</span>
+                    <p>紮實培育業界所需之基礎媒體操作與科技應用技能。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-video"></i></div>
+                    <h3>媒體專業</h3>
+                    <span class="subtitle">MEDIA EXPERTISE</span>
+                    <p>涵蓋企劃、攝影、剪輯等影視專業，並跨足新媒體與數位行銷領域。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>數位科技</h3>
+                    <span class="subtitle">DIGITAL TECH</span>
+                    <p>結合 AI 科技、AR/VR 虛擬實境、空拍機實作與數據分析等尖端應用。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 學習內容 Curriculum Fields -->
+    <section id="fields" class="fields">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Skills & Learning</span>
+                <h2>多元學習內容 Curriculum Fields</h2>
+                <p>專業模組與跨域學習，打造全方位媒體與科技人才</p>
+            </div>
+            <div class="fields-tags">
+                <div class="tag-item"><i class="fas fa-camera"></i> 專業攝影</div>
+                <div class="tag-item"><i class="fas fa-robot"></i> AI 科技應用</div>
+                <div class="tag-item"><i class="fas fa-vr-cardboard"></i> AR / VR 實境開發</div>
+                <div class="tag-item"><i class="fas fa-palette"></i> 平面設計</div>
+                <div class="tag-item"><i class="fas fa-film"></i> 影片製作與剪輯</div>
+                <div class="tag-item"><i class="fas fa-bullhorn"></i> 數位整合行銷</div>
+                <div class="tag-item"><i class="fas fa-broadcast-tower"></i> 網路直播工程</div>
+                <div class="tag-item"><i class="fas fa-feather-alt"></i> 劇本與分鏡創作</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 未來發展 Careers -->
+    <section id="careers" class="careers">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Career Paths</span>
+                <h2>未來職涯發展 Career Opportunities</h2>
+                <p>DMT 畢業生在數位媒體、電視台與影視產業中皆具備極佳競爭力</p>
+            </div>
+            <div class="career-grid">
+                <div class="career-card">
+                    <i class="fas fa-camera-retro"></i>
+                    <span>專業攝影師</span>
+                </div>
+                <div class="career-card">
+                    <i class="fas fa-video"></i>
+                    <span>影視導演 / 製作人</span>
+                </div>
+                <div class="career-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>平面設計師</span>
+                </div>
+                <div class="career-card">
+                    <i class="fas fa-cut"></i>
+                    <span>剪輯與特效師</span>
+                </div>
+                <div class="career-card">
+                    <i class="fas fa-hashtag"></i>
+                    <span>社群媒體經營者</span>
+                </div>
+                <div class="career-card">
+                    <i class="fas fa-gamepad"></i>
+                    <span>AR/VR 工程師</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 5. 學生作品 Student Work -->
+<section id="student-work" class="student-work">
+    <div class="container">
+        <div class="section-header">
+            <span class="tag">Showcase</span>
+            <h2>學生作品 Student Work</h2>
+            <p>來自多元背景學生的精彩創作與個人介紹</p>
+        </div>
+
+        <!-- 學生作品網格容器 (一格一格並排) -->
+        <div class="student-grid">
+            
+            <!-- 學生 1：Elizabeth Wong -->
+            <div class="student-card">
+                <div class="card-top">
+                    <div class="student-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="student-details">
+                        <h3>Elizabeth Wong</h3>
+                        <span class="country"><i class="fas fa-globe-asia"></i> Malaysia</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="quote">"Elizabeth Wong, Malaysia"</p>
+                </div>
+                <div class="card-footer">
+                    <a href="studentwork.html" class="btn-portfolio">
+                        <span>創作者專區</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 學生 2：Phan Hoang Anh -->
+            <div class="student-card">
+                <div class="card-top">
+                    <div class="student-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="student-details">
+                        <h3>Phan Hoang Anh</h3>
+                        <span class="country"><i class="fas fa-globe-asia"></i> Vietnam</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="quote">"Hi, I'm Marcus"</p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://marcusportfoliomarketing.netlify.app/#work" target="_blank" class="btn-portfolio">
+                        <span>創作者專區</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 如需新增第 3 位學生，只需複製下方這段即可：
+            <div class="student-card">
+                <div class="card-top">
+                    <div class="student-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="student-details">
+                        <h3>學生姓名</h3>
+                        <span class="country"><i class="fas fa-globe-asia"></i> 國家</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="quote">"個人簡介或名言"</p>
+                </div>
+                <div class="card-footer">
+                    <a href="作品連結.html" target="_blank" class="btn-portfolio">
+                        <span>創作者專區</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            -->
+
+        </div>
+    </div>
+</section>
+    <!-- 頁尾 Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h3>慈濟大學 國際數位媒體科技學士學位學程</h3>
+                    <p>Bachelor Program in Digital Media and Technology, Tzu Chi University</p>
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--yellow-accent);"></i> 花蓮市中央路三段701號 (慈濟大學人文社會校區)</p>
+                    <p><i class="fas fa-globe" style="color: var(--yellow-accent);"></i> 官方網站：<a href="https://bpdmt.tcu.edu.tw/" target="_blank" style="color: #93c5fd;">bpdmt.tcu.edu.tw</a></p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速連結</h4>
+                    <ul>
+                        <li><a href="#about">學程簡介</a></li>
+                        <li><a href="#competencies">核心能力</a></li>
+                        <li><a href="#fields">學習內容</a></li>
+                        <li><a href="#careers">未來發展</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>相關資源</h4>
+                    <ul>
+                        <li><a href="https://www.tcu.edu.tw/" target="_blank">慈濟大學首頁</a></li>
+                        <li><a href="https://bpdmt.tcu.edu.tw/?page_id=299" target="_blank">課程地圖 Curriculum</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 慈濟大學 國際數位媒體科技學士學位學程. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Internal JS -->
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                if(icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
