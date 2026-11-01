@@ -774,60 +774,115 @@
             box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
         }
 
-        /* 6. 懿德爸媽關懷區塊 Yide Care */
-        .yide-care {
+        /* ===== 6. 學生活動卡片輪播 CSS ===== */
+        .student-activities {
             background-color: var(--bg-light);
             padding: 90px 0;
         }
 
-        .yide-grid {
+        .activity-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 30px;
         }
 
-        .yide-card {
+        .activity-card {
             background: var(--bg-white);
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--card-border);
             box-shadow: var(--shadow-tech);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
-        .yide-card:hover {
+        .activity-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(15, 43, 92, 0.15);
             border-color: var(--yellow-accent);
         }
 
-        .yide-card img {
+        .activity-slider-wrapper {
+            position: relative;
             width: 100%;
-            height: 240px;
+            height: 230px;
+            background: var(--navy-dark);
+            overflow: hidden;
+        }
+
+        .activity-slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .activity-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            animation: fadeEffect 0.5s ease;
+        }
+
+        .activity-slide.active {
+            display: block;
+        }
+
+        .activity-slide img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .yide-info {
-            padding: 24px;
+        .act-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 25, 47, 0.65);
+            color: var(--yellow-accent);
+            border: 1px solid var(--yellow-accent);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 5;
         }
 
-        .yide-info h3 {
-            font-size: 1.2rem;
+        .act-btn:hover {
+            background: var(--yellow-accent);
             color: var(--navy-dark);
-            margin-bottom: 8px;
+        }
+
+        .act-btn.prev { left: 10px; }
+        .act-btn.next { right: 10px; }
+
+        .activity-info {
+            padding: 22px;
+            flex-grow: 1;
+        }
+
+        .activity-info h3 {
+            font-size: 1.15rem;
+            color: var(--navy-dark);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .yide-info h3 i {
+        .activity-info h3 i {
             color: var(--yellow-accent);
         }
 
-        .yide-info p {
+        .activity-info p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.5;
         }
 
@@ -1019,7 +1074,7 @@
                 <li><a href="#fields">學習內容</a></li>
                 <li><a href="#careers">未來發展</a></li>
                 <li><a href="#student-work">學生作品</a></li>
-                <li><a href="#yide-care">懿德關懷</a></li>
+                <li><a href="#student-activities">學生活動</a></li>
                 <li><a href="#media-news">新聞報導</a></li>
                 <li><a href="https://bpdmt.tcu.edu.tw/" target="_blank">官方網站</a></li>
             </ul>
@@ -1047,18 +1102,18 @@
             <!-- 照片輪播元件 Wrapper -->
             <div class="hero-image-wrapper">
                 <div class="hero-slider">
-                    <!-- 輪播圖片清單 (請將檔名與副檔名放入 graph/ 資料夾內) -->
+                    <!-- 輪播圖片清單 -->
                     <div class="slide active">
                         <img src="graph/school.jpg" alt="慈濟大學數位媒體與科技學程合照">
                     </div>
                     <div class="slide">
-                        <img src="graph/yide1.jpg" alt="懿德爸媽與學生戶外合照">
+                        <img src="graph/d1.jpg" alt="慈濟大學合照">
                     </div>
                     <div class="slide">
-                        <img src="graph/yide2.jpg" alt="與懿德爸媽溫馨共餐">
+                        <img src="graph/c.jpg" alt="與懿德爸媽合照">
                     </div>
                     <div class="slide">
-                        <img src="graph/d1.jpg" alt="無人機科技實務教學">
+                        <img src="graph/e.jpg" alt="第一屆數媒畢業展">
                     </div>
 
                     <!-- 左右箭頭切換按鈕 -->
@@ -1340,38 +1395,97 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- 6. 懿德爸媽溫馨關懷 Yide Care -->
-    <section id="yide-care" class="yide-care">
+    <!-- 6. 學生活動 Student Activities (支援多圖箭頭切換) -->
+    <section id="student-activities" class="student-activities">
         <div class="container">
             <div class="section-header">
-                <span class="tag">Humanistic Care</span>
-                <h2>懿德爸媽溫馨關懷 Yide Care</h2>
-                <p>慈濟大學獨有的慈誠懿德陪伴制度，給予來自全球學生如家一般的溫暖與支持</p>
+                <span class="tag">Campus Life</span>
+                <h2>學生活動 Student Activities</h2>
+                <p>紀錄 DMT 學生在展演、課堂、家庭關懷與戶外實務中的精彩瞬間</p>
             </div>
-            <div class="yide-grid">
-                <div class="yide-card">
-                    <img src="graph/yide1.jpg" alt="懿德爸媽與學生戶外合照">
-                    <div class="yide-info">
-                        <h3><i class="fas fa-heart"></i> 戶外陪伴與溫馨交流</h3>
-                        <p>懿德爸媽定期陪伴學生生活與學習，建立深厚的師生與家庭情誼。</p>
+            <div class="activity-grid">
+                
+                <!-- 活動 1：110級第一屆畢業展 -->
+                <div class="activity-card">
+                    <div class="activity-slider-wrapper">
+                        <div class="activity-slider">
+                            <div class="activity-slide active"><img src="graph/h.jpg" alt="畢業展攤位照片 1"></div>
+                            <div class="activity-slide"><img src="graph/i.jpg" alt="畢業展學生合照 2"></div>
+                            <div class="activity-slide"><img src="graph/j.jpg" alt="畢業展攤位細節 3"></div>
+                        </div>
+                        <!-- 左右箭頭 < > -->
+                        <button class="act-btn prev" onclick="moveCardSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="act-btn next" onclick="moveCardSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="activity-info">
+                        <h3><i class="fas fa-graduation-cap"></i> 110級第一屆畢業展</h3>
+                        <p>展示畢業生四年來的跨域創作與多媒體專案成果，展現豐富的創意與實力。</p>
                     </div>
                 </div>
-                <div class="yide-card">
-                    <img src="graph/yide2.jpg" alt="與懿德爸媽溫馨聚餐">
-                    <div class="yide-info">
-                        <h3><i class="fas fa-utensils"></i> 家庭共餐聚會</h3>
-                        <p>圍坐共享美味佳餚，讓遠道而來的國際生在花蓮感受滿滿的關懷。</p>
+
+                <!-- 活動 2：專業課堂與器材實務 -->
+                <div class="activity-card">
+                    <div class="activity-slider-wrapper">
+                        <div class="activity-slider">
+                            <div class="activity-slide active"><img src="graph/m.jpg" alt="攝影課堂指導 1"></div>
+                            <div class="activity-slide"><img src="graph/n.jpg" alt="單眼相機實作 2"></div>
+                            <div class="activity-slide"><img src="graph/o.jpg" alt="相機參數與調整 3"></div>
+                            <div class="activity-slide"><img src="graph/s.jpg" alt="攝影棚打光實務 4"></div>
+                            <div class="activity-slide"><img src="graph/p.jpg" alt="小組簡報與討論 5"></div>
+                        </div>
+                        <!-- 左右箭頭 < > -->
+                        <button class="act-btn prev" onclick="moveCardSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="act-btn next" onclick="moveCardSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="activity-info">
+                        <h3><i class="fas fa-camera-retro"></i> 課堂與器材實務</h3>
+                        <p>老師手把手指導單眼攝影、打光與媒體軟體操作，打造紮實的專業技術基底。</p>
                     </div>
                 </div>
+
+                <!-- 活動 3：懿德爸媽陪伴關懷 -->
+                <div class="activity-card">
+                    <div class="activity-slider-wrapper">
+                        <div class="activity-slider">
+                            <div class="activity-slide active"><img src="graph/u.jpg" alt="與懿德爸媽合照 1"></div>
+                            <div class="activity-slide"><img src="graph/yide1.jpg" alt="戶外活動合照 2"></div>
+                            <div class="activity-slide"><img src="graph/yide2.jpg" alt="溫馨家聚共餐 3"></div>
+                        </div>
+                        <!-- 左右箭頭 < > -->
+                        <button class="act-btn prev" onclick="moveCardSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="act-btn next" onclick="moveCardSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="activity-info">
+                        <h3><i class="fas fa-heart"></i> 懿德爸媽溫馨關懷</h3>
+                        <p>慈濟大學獨有的慈誠懿德陪伴制度，給予來自全球的學生如家一般的溫暖與支持。</p>
+                    </div>
+                </div>
+
+                <!-- 活動 4：戶外無人機與外景教學 -->
+                <div class="activity-card">
+                    <div class="activity-slider-wrapper">
+                        <div class="activity-slider">
+                            <div class="activity-slide active"><img src="graph/t.jpg" alt="外景錄影指導 1"></div>
+                            <div class="activity-slide"><img src="graph/d1.jpg" alt="戶外無人機飛行 2"></div>
+                        </div>
+                        <!-- 左右箭頭 < > -->
+                        <button class="act-btn prev" onclick="moveCardSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="act-btn next" onclick="moveCardSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="activity-info">
+                        <h3><i class="fas fa-paper-plane"></i> 戶外無人機與外景教學</h3>
+                        <p>走出教室走入自然與社區，進行空拍機操作、外景採訪與實地影視拍攝演練。</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- 7. 媒體新聞報導 Media News -->
+    <!-- 7. 媒體新聞報導 Press News -->
     <section id="media-news" class="media-news">
         <div class="container">
             <div class="section-header">
@@ -1438,7 +1552,6 @@
         // 1. 行動裝置選單功能
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
-
         if (menuBtn && navLinks) {
             menuBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
@@ -1512,6 +1625,27 @@
             const targetCategory = document.getElementById(categoryName);
             if (targetCategory) targetCategory.classList.add("active");
             if (evt && evt.currentTarget) evt.currentTarget.classList.add("active");
+        }
+
+        // 4. 學生活動卡片微型照片輪播 (< > 按鈕點擊切換)
+        function moveCardSlide(btnElement, direction) {
+            const wrapper = btnElement.closest('.activity-slider-wrapper');
+            const slides = wrapper.querySelectorAll('.activity-slide');
+            let currentIndex = 0;
+
+            slides.forEach((slide, index) => {
+                if (slide.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+
+            slides[currentIndex].classList.remove('active');
+
+            let newIndex = currentIndex + direction;
+            if (newIndex >= slides.length) { newIndex = 0; }
+            if (newIndex < 0) { newIndex = slides.length - 1; }
+
+            slides[newIndex].classList.add('active');
         }
     </script>
 </body>
